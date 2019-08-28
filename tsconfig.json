@@ -13,7 +13,6 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
-    "noImplicitAny": false,
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
@@ -26,7 +25,11 @@
     },
     "types": [
       "@types/node",
-      "@nuxt/vue-app"
+      "@nuxt/types",
+      "@nuxtjs/axios"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

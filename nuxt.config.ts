@@ -1,7 +1,8 @@
-import NuxtConfiguration from '@nuxt/config'
+import { Configuration } from '@nuxt/types'
 
-const config: NuxtConfiguration = {
+const nuxtConfig: Configuration = {
   mode: 'universal',
+  buildModules: ['@nuxt/typescript-build'],
   /*
   ** Headers of the page
   */
@@ -30,6 +31,10 @@ const config: NuxtConfiguration = {
   */
   plugins: [
   ],
+  typescript: {
+    typeCheck: true,
+    ignoreNotFoundWarnings: true
+  },
   /*
   ** Nuxt.js modules
   */
@@ -54,6 +59,9 @@ const config: NuxtConfiguration = {
     */
     extend(config, ctx) {
     }
-  }
+  },
+  serverMiddleware: [
+    { path: '/api', handler: '~/server/index.ts' }
+  ]
 }
-export default config
+module.exports = nuxtConfig

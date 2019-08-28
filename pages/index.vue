@@ -6,7 +6,7 @@
         nuxt-express-ts
       </h1>
       <h2 class="subtitle">
-        My pioneering Nuxt.js project
+        {{ text }}
       </h2>
       <div class="links">
         <a
@@ -24,14 +24,20 @@
   </div>
 </template>
 
-<script>
-import Logo from '~/components/Logo.vue'
-
-export default {
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+@Component({
   components: {
-    Logo
+    Logo: () => import('~/components/Logo.vue')
+  },
+  async asyncData({ $axios }) {
+    const data: any = await $axios.$get('api/test')
+    return { text: data }
   }
+})
+class TopPage extends Vue {
 }
+export default TopPage
 </script>
 
 <style>
